@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item1"
+        android:title="about developer">
+    </item>
+    <item
+        android:id="@+id/item2"
+        android:title="MBI chart">
+    </item>
+    <item
+        android:id="@+id/item3"
+        android:title="Exit">
+    </item>
+    <item
+        android:id="@+id/item4"
+        android:title="what is Bmi">
+    </item>
+    <item
+        android:id="@+id/item5"
+        android:title="Contect us">
+        <menu>
+            <item android:id="@+id/contectus"
+                android:title="Dail phone number"/>
+
+
+            <item android:id="@+id/calldeveloper"
+                android:title="Call"/>
+
+
+
+            <item android:id="@+id/emaildeveloper"
+                android:title="Email"/>
+
+
+        </menu>
+
+    </item>
+
+
+</menu>
