@@ -41,6 +41,7 @@
     </com.google.android.material.textview.MaterialTextView>
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
+        android:text="CALCULATE"
         android:layout_height="wrap_content"
         android:id="@+id/btnsubmit">
 

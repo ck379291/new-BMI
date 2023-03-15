@@ -2,6 +2,7 @@ package com.example.newbmi
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.newbmi.databinding.ActivityMainBinding
 
@@ -116,17 +118,46 @@ private lateinit var  binding: ActivityMainBinding
                 startActivity(intent)
                 return true
             }
-//            R.id.calldeveloper->{
-//                Toast.makeText(this,"calling developer",Toast.LENGTH_SHORT).show()
-//                if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.CALL_PHONE)==packageManager.PERMISSION_GRANTED){
-//                    intent=Intent(Intent.ACTION_CALL)
-//                    intent.data= Uri.parse("tel:8825385207")
-//                    startActivity(intent)
-//                }
-//            }
+            R.id.calldeveloper->{
+                Toast.makeText(this,"calling developer",Toast.LENGTH_SHORT).show()
+                if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.CALL_PHONE)==PERMISSION_GRANTED){
+                    intent=Intent(Intent.ACTION_CALL)
+                    intent.data= Uri.parse("tel:8825385207")
+                    startActivity(intent)
+                }
+            }
+            R.id.emaildeveloper->{
+                Toast.makeText(this,"sending email",Toast.LENGTH_SHORT).show()
+                val intent=Intent(Intent.ACTION_SENDTO).apply {
+                    data= Uri.parse(":MAIL to")
+                    putExtra(Intent.EXTRA_EMAIL, arrayOf("ck379291@gmail.com"))
+                }
+                startActivity(intent)
+
+            }
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onBackPressed() {
+       val builder=AlertDialog.Builder(this)
+        builder.setMessage("Do you want to exit ")
+        builder.setTitle("EXIT")
+        builder.setCancelable(false)
+        builder.setPositiveButton("yes"){
+            dialog,which->finish()
+            Toast.makeText(this,"OK SIR",Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("no"){
+            dialog,which->dialog.cancel()
+            Toast.makeText(this,"ENJOY",Toast.LENGTH_LONG).show()
+        }
+        val alertDialog=builder.create()
+        alertDialog.show()
+
+    }
+
+
 
 
     override fun onResume() {
