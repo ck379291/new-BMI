@@ -22,6 +22,7 @@ private lateinit var  binding: ActivityMainBinding
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.btnsubmit.setOnClickListener(this)
+
         if (isClear){
             isClear=false
             binding.btnsubmit.setText("CALCULATE")
@@ -108,13 +109,15 @@ private lateinit var  binding: ActivityMainBinding
             }
             R.id.item4->{
                 Toast.makeText(this, "what is BMI", Toast.LENGTH_SHORT).show()
+                val intent=Intent(this,Wenview::class.java)
 
-                val intent= Intent(Intent.ACTION_VIEW, Uri.parse("https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm"))
+//                val intent= Intent(Intent.ACTION_VIEW, Uri.parse("https://www.nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm"))
                 startActivity(intent)
+                return true
             }
             R.id.contectus->{
-                Toast.makeText(this,"dailing phone number of feveloper ",Toast.LENGTH_SHORT).show()
-                val intent=Intent(Intent.ACTION_DIAL, Uri.parse("tel:8825385207"))
+                Toast.makeText(this,"dailing phone number of developer ",Toast.LENGTH_SHORT).show()
+                val intent=Intent(Intent.ACTION_DIAL, Uri.parse("tel:8825 "))
                 startActivity(intent)
                 return true
             }
@@ -125,16 +128,23 @@ private lateinit var  binding: ActivityMainBinding
                     intent.data= Uri.parse("tel:8825385207")
                     startActivity(intent)
                 }
+
+//                1
             }
             R.id.emaildeveloper->{
-                Toast.makeText(this,"sending email",Toast.LENGTH_SHORT).show()
+               //Toast.makeText(this,"sending email",Toast.LENGTH_SHORT).show()
                 val intent=Intent(Intent.ACTION_SENDTO).apply {
-                    data= Uri.parse(":MAIL to")
+                    data= Uri.parse("mailto:")
                     putExtra(Intent.EXTRA_EMAIL, arrayOf("ck379291@gmail.com"))
+                    putExtra(Intent.EXTRA_SUBJECT,"jgjhy2tsj12gf")
                 }
                 startActivity(intent)
 
             }
+            R.id.webview->{
+                val intent=Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.android.com/develop/ui/views/layout/webapps/webview"))
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }
@@ -146,7 +156,6 @@ private lateinit var  binding: ActivityMainBinding
         builder.setCancelable(false)
         builder.setPositiveButton("yes"){
             dialog,which->finish()
-            Toast.makeText(this,"OK SIR",Toast.LENGTH_SHORT).show()
         }
         builder.setNegativeButton("no"){
             dialog,which->dialog.cancel()

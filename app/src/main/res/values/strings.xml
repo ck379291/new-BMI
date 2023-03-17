@@ -4,4 +4,7 @@
     <string name="under_weight">Health Status:- You are Under Weight</string>
     <string name="Healthy">Health Status :- You are Healthy</string>
     <string name="Suffering_from_Obesity">Health Status :- Suffering from Obesity</string>
+    <string name="EXIT">Do u want to exit</string>
+
+
 </resources>
