@@ -12,15 +12,19 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.example.newbmi.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 private lateinit var  binding: ActivityMainBinding
+private lateinit var viewmodel:Viewmodel_AssigemnentActivity
     private var isClear: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewmodel=ViewModelProvider(this)[Viewmodel_AssigemnentActivity::class.java]
         binding.btnsubmit.setOnClickListener(this)
 
         if (isClear){
@@ -144,6 +148,7 @@ private lateinit var  binding: ActivityMainBinding
             R.id.webview->{
                 val intent=Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.android.com/develop/ui/views/layout/webapps/webview"))
             }
+
 
         }
         return super.onOptionsItemSelected(item)

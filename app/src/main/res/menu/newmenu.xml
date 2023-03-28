@@ -35,6 +35,9 @@
 
             <item android:id="@+id/emaildeveloper"
                 android:title="Email"/>
+            <item
+                android:id="@+id/ratoing"
+                android:title="ratting"></item>
 
 
         </menu>
