@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.newbmi.databinding.ActivityMainBinding
 
@@ -25,6 +27,12 @@ private lateinit var viewmodel:Viewmodel_AssigemnentActivity
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         viewmodel=ViewModelProvider(this)[Viewmodel_AssigemnentActivity::class.java]
+        viewmodel.value01.observe(this, Observer {
+            binding.BMI.text=it.toString()
+        })
+        viewmodel.text.observe(this, Observer {
+            binding.output.text=it.toString()
+        })
         binding.btnsubmit.setOnClickListener(this)
 
         if (isClear){
@@ -50,35 +58,46 @@ private lateinit var viewmodel:Viewmodel_AssigemnentActivity
               }
               else{
                   if (binding.weight.text!!.isNotEmpty() && binding.height.text!!.isNotEmpty()){
-                      if (!isClear){
+                      if (!isClear)
                           isClear=true
-                          binding.btnsubmit.setText("clear")
-                          val height=(binding.height.text.toString()).toDouble()
-                          val weight=(binding.weight.text.toString()).toDouble()
-                          if (height==0.0 && weight==0.0){
-                              Toast.makeText(this,"enter valid ammount",Toast.LENGTH_SHORT).show()
-                          }
-                          else{
-                              val height_in_meter=height.toFloat()/100
-                              val BMI=weight.toFloat()/(height_in_meter*height_in_meter)
-                              binding.BMI.text="your bmi is:${BMI}"
-                              if (BMI<18.5){
-                                  binding.output.text=resources.getString(R.string.under_weight)
-                              }
-                              else if (BMI >= 18.5 && BMI < 24.9){
-                                  binding.output.text=resources.getString(R.string.Healthy)
-                              }
-                              else if (BMI >= 24.9 && BMI < 30){
-                                  binding.output.text=resources.getString(R.string.over_weight)
-                              }
-                              else{
-                                  binding.output.text=resources.getString(R.string.Suffering_from_Obesity)
-                              }
-                          }
-                      }
+                      binding.btnsubmit.setText("clear")
+                      binding.height.isEnabled=false
+                      binding.weight.isEnabled=false
+                      viewmodel.calculation(binding.height.editableText.toString().toDouble(),
+                      binding.weight.editableText.toString().toInt())
                   }
 
               }
+//                  if (binding.weight.text!!.isNotEmpty() && binding.height.text!!.isNotEmpty()){
+//                      if (!isClear){
+//                          isClear=true
+//                          binding.btnsubmit.setText("clear")
+//                          val height=(binding.height.text.toString()).toDouble()
+//                          val weight=(binding.weight.text.toString()).toDouble()
+////                          if (height==0.0 && weight==0.0){
+////                              Toast.makeText(this,"enter valid ammount",Toast.LENGTH_SHORT).show()
+//                          }
+////                          else{
+//                              val height_in_meter=height.toFloat()/100
+//                              val BMI=weight.toFloat()/(height_in_meter*height_in_meter)
+//                              binding.BMI.text="your bmi is:${BMI}"
+//                              if (BMI<18.5){
+//                                  binding.output.text=resources.getString(R.string.under_weight)
+//                              }
+//                              else if (BMI >= 18.5 && BMI < 24.9){
+//                                  binding.output.text=resources.getString(R.string.Healthy)
+//                              }
+//                              else if (BMI >= 24.9 && BMI < 30){
+//                                  binding.output.text=resources.getString(R.string.over_weight)
+//                              }
+//                              else{
+//                                  binding.output.text=resources.getString(R.string.Suffering_from_Obesity)
+//                              }
+//                          }
+//                      }
+//                  }
+//
+//              }
           }
       }
     }
