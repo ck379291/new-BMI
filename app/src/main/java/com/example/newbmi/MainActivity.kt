@@ -114,7 +114,7 @@ private lateinit var viewmodel:Viewmodel_AssigemnentActivity
             R.id.item1->{
                 val intent=Intent(this,developeractivity::class.java)
                 startActivity(intent)
-                Toast.makeText(this, "about developer", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "developere name is chaitanya", Toast.LENGTH_SHORT).show()
                 return true
             }
             R.id.item2->{
